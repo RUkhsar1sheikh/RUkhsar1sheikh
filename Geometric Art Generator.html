@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0054)file:///C:/Users/user/Desktop/naiyer/Geometricart.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geometric Art Generator</title>
+    <style>
+      *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box; 
+      }
+      .wrapper{
+        position: absolute;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        top: 50%;
+      }
+      .container{
+        background-color: #000000;
+        height: calc(15vmin * 5);
+        width: calc(15vmin *4);
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 15px;
+        gap: 10px;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(90, 90, 180, 0.4);
+      }
+      .container div{
+        position: relative;
+        height: 100%;
+        width: 100%;
+      }
+      button {
+        width: 100%;
+        margin-top: 30px;
+        background-color: #000000;
+        padding: 18px 0;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        color: #ffffff;
+        font-family: "Poppins", sans-serif;
+        font-size: 3.5vmin;
+        border-radius: 5px;
+      }
+      .quad-circle-1 {
+        clip-path: circle(100% at 0 0);
+      }
+      .quad-circle-2 {
+        clip-path: circle(100% at 100% 0);
+      } 
+      .quad-circle-3 {
+        clip-path: circle(100% at 100% 100%);
+      }
+      .quad-circle-4 {
+        clip-path: circle(100% at 0 100%);
+      }
+      .triangle-1 {
+        clip-path: polygon(0 0, 0% 100%, 100% 0);
+      }
+      .triangle-2 {
+        clip-path: polygon(0 0, 100%, 0, 100% 100%);
+      }
+      .triangle-3 {
+        clip-path: polygon(0 100%, 100%, 0, 100% 100%);
+      }
+      .triangle-4 {
+        clip-path: polygon(0 0, 0 100%, 100% 100%);
+      }
+      .circle {
+        border-radius: 50%;
+      }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <div class="circle" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="triangle-1" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="quad-circle-4" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="circle" style="background-color: rgb(254, 159, 18);"></div>
+            <div class="quad-circle-4" style="background-color: rgb(1, 210, 253);"></div>
+            <div class="triangle-3" style="background-color: rgb(1, 210, 253);"></div>
+            <div class="quad-circle-2" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="triangle-1" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="triangle-3" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="triangle-3" style="background-color: rgb(1, 210, 253);"></div>
+            <div class="quad-circle-1" style="background-color: rgb(1, 210, 253);"></div>
+            <div class="triangle-1" style="background-color: rgb(254, 159, 18);"></div>
+            <div class="quad-circle-1" style="background-color: rgb(255, 199, 0);"></div>
+            <div class="triangle-2" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="triangle-4" style="background-color: rgb(1, 210, 253);"></div>
+            <div class="circle" style="background-color: rgb(254, 159, 18);"></div>
+            <div class="quad-circle-2" style="background-color: rgb(255, 199, 0);"></div>
+            <div class="triangle-2" style="background-color: rgb(6, 208, 199);"></div>
+            <div class="quad-circle-1" style="background-color: rgb(255, 199, 0);"></div>
+            <div class="quad-circle-2" style="background-color: rgb(1, 210, 253);"></div>
+        </div>
+        <button id="btn">Generate</button>
+    </div>
+    <script>
+        const btn = document.getElementById("btn");
+        const shapes = [
+            "quad-circle-1",
+            "quad-circle-2",
+            "quad-circle-3",
+            "quad-circle-4",
+            "triangle-1",
+            "triangle-2",
+            "triangle-3",
+            "triangle-4",
+            "circle",   
+        ];
+
+        const colors = ["#01d2fd", "#ffc700", "#fe9f12", "#06d0c7",];
+
+        const boxes = document.querySelectorAll(".container div");
+
+        let generatePattern = () => {
+            boxes.forEach((box) => {
+                box.className = " ";
+                let i = Math.floor(Math.random() * shapes.length);
+                let j = Math.floor(Math.random() * colors.length);
+                box.classList.add(shapes[i]);
+                box.style.backgroundColor = colors[j];
+            });
+        };
+        btn.addEventListener("click", generatePattern);
+        window.addEventListener("load", generatePattern);
+
+    </script>
+
+</body></html>
