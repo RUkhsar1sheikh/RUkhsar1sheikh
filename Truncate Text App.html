@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0060)file:///C:/Users/user/Desktop/naiyer/Truncate%20textapp.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truncate Text App</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: #1dd2a2;
+        }
+        .container{
+            background-color: #ffffff;
+            border-radius: 0.8em;
+            width: 95%;
+            max-width: 43.75em;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            padding: 5em 2em;
+        }
+        .txtareas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1em;
+        }
+        label {
+            color: #02001f;
+            font-weight: 600;
+        }
+        .txtareas div{
+            display: flex;
+            flex-direction: column;
+        }
+        .txtareas textarea {
+            resize: none;
+            border: 1px solid #02001f;
+            border-radius: 0.3em;
+            margin: 1em 0 2em 0;
+            padding: 0.8em;
+        }
+        #len{
+            width: 5em;
+            padding: 0.8em 1em;
+            border: 1px solid #02001f;
+            border-radius: 0.5em;
+        }
+        #truncate, #copy{
+            padding: 0.8em 1em;
+            border-radius: 0.5em;
+            border: none;
+            background-color: #1dd2a2;
+            cursor: pointer;
+        }
+        @media screen and (max-width: 600px) {
+            .txtareas {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="txtareas">
+            <div>
+                <label for="input-text">Input Text:</label>
+                <textarea id="input-text" rows="5" placeholder="Enter Text Here..."></textarea>
+            </div>
+            <div>
+                <label for="output-text">Output Text:</label>
+                <textarea id="output-text" rows="5" placeholder="Output text will be displayed here..."></textarea>
+            </div>
+        </div>
+        <input type="number" value="10" id="len">
+        <button id="truncate">Truncate</button>
+        <button id="copy">Copy</button>
+    </div>
+    <script>
+        let inputText = document.getElementById("input-text");
+        let OutputText = document.getElementById("output-text");
+        let truncateBtn = document.getElementById("truncate");
+        let CopyBtn = document.getElementById("copy");
+
+        truncateBtn.addEventListener("click", () => {
+            let len = parseInt(document.getElementById("len").value);
+            //If input length is NOT empty
+            if (len) {
+                //Vlidate input length and input text
+                //If valid
+                if (len > 0 && inputText.value.length > len) {
+                    OutputText.value = inputText.value.slice(0, len);
+                }
+                //If NOT valid
+                else {
+                    OutputText.value = inputText.value;
+                }
+            }
+            //If input length is empty 
+            else {
+                OutputText.value = " ";
+                alert("Please fill the length input");
+            }
+        });
+        //Copy Button 
+        CopyBtn.addEventListener("click", () => {
+            navigator.clipboard.writeText(`${OutputText.value}`);
+        });
+
+    </script>
+
+</body></html>
